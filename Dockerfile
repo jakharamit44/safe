@@ -6,14 +6,20 @@ ENV DEBIAN_FRONTEND=noninteractive
 
 # Install necessary tools
 RUN apt-get update && \
-    apt-get install -y curl bash && \
+    apt-get install -y curl bash iproute2 && \
     rm -rf /var/lib/apt/lists/*
 
-# Add the script to the container and run it
-RUN bash -c "$(curl -fsSLk https://waf.chaitin.com/release/latest/setup.sh)"
+# Add the script to the container
+ADD https://waf.chaitin.com/release/latest/setup.sh /setup.sh
 
-# Optional: Expose any ports the installed software might use
+# Make the script executable
+RUN chmod +x /setup.sh
+
+# Run the script
+RUN /setup.sh
+
+# Expose necessary ports (if known)
 EXPOSE 80
 
-# Set a default command for the container
+# Default command
 CMD ["bash"]
