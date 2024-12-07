@@ -15,11 +15,8 @@ ADD https://waf.chaitin.com/release/latest/setup.sh /setup.sh
 # Make the script executable
 RUN chmod +x /setup.sh
 
-# Run the script
-RUN /setup.sh
-
 # Expose necessary ports (if known)
 EXPOSE 80
 
-# Default command
+# Default command to keep the container running
 CMD ["bash"]
