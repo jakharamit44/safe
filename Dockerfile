@@ -6,7 +6,7 @@ ENV DEBIAN_FRONTEND=noninteractive
 
 # Install necessary tools
 RUN apt-get update && \
-    apt-get install -y curl bash iproute2 && \
+    apt-get install -y curl bash iproute2 net-tools && \
     rm -rf /var/lib/apt/lists/*
 
 # Add the script to the container
